@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    #LIBRERIAS DE TERCEROS
+    'bootstrap4',
     #LIBRERIAS DJANGO
     'django.contrib.admin',
     'django.contrib.auth',
