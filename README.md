@@ -39,6 +39,7 @@ _Para crear el directorio y acceder a él desde el cmd_
 c:\>Users\yo> cd\
 c:\>md ProyectosDjango
 c:\>cd ProyectosDjango 
+
 c:\ProyectosDjango>
 ```
 _Para acceder al directorio desde el cmd_
