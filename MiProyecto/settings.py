@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     #LIBRERIAS DE TERCEROS
     'bootstrap4',
+    'crispy_forms',
     #LIBRERIAS DJANGO
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,7 +44,7 @@ INSTALLED_APPS = [
     #MI APP
     'core',
 ]
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -80,9 +81,16 @@ WSGI_APPLICATION = 'MiProyecto.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': '127.0.0.1:1521/xe',
+        'USER': 'sandbox_local',
+        'PASSWORD': 'oracle',
+        'TEST':{
+            'USER':'default_test',
+            'TBLSPACE': 'default_test_tbls',
+            'TBLSPACE_TMP':'default_test_tbls_tmp',
+        },
+    },
 }
 
 
