@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Vehiculos</h2>
+    <ul>
+        <li><a href="{% url 'index' %}">Inicio</a></li>
+        <li><a href="{% url 'contacto' %}">Contacto</a></li>
+        <li><a href="{% url 'verVehiculos' %}">Ver Vehiculos</a></li>
+    </ul>  
+
+
+    <a href="{% url 'nuevoVehiculo' %}">Agregar Otro</a>
+    <table>
+        <tr>
+            <td>Patente</td>
+            <td>Marca</td>
+            <td>Modelo</td>
+            <td>Categoría</td>
+        </tr>
+        {% for vehiculo in vehiculos %}
+        <tr>
+            <td>{{ vehiculo.patente }}</td>
+            <td>{{ vehiculo.marca }}</td>
+            <td>{{ vehiculo.modelo }}</td>
+            <td>{{ vehiculo.categoria }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</body>
+</html>

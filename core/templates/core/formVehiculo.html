@@ -1,6 +1,3 @@
-{% load static %}
-{% load bootstrap4 %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,19 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    {% bootstrap_css %}
-    <link rel="stylesheet" href="{% static 'core/css/estilos.css'%}">
 </head>
 <body>
-    <h1>Hola Mundo</h1>
-
+    <h2>Nuevo Vehículo</h2>
     <ul>
         <li><a href="{% url 'index' %}">Inicio</a></li>
         <li><a href="{% url 'contacto' %}">Contacto</a></li>
         <li><a href="{% url 'verVehiculos' %}">Ver Vehiculos</a></li>
-        <li><a href="{% url 'nuevoVehiculo' %}">Nuevo Vehiculo</a></li>
-    </ul>   
+    </ul>  
 
-    {% bootstrap_javascript jquery='full' %}
+    <form action="" method="POST" id="formulario">
+            {% csrf_token %}
+
+            {{ form.as_table }}
+
+            <button type="submit">Agregar</button>
+
+            
+    </form>
+    <span style="color:green">{{ mensaje }}  </span>
 </body>
 </html>
