@@ -1,5 +1,6 @@
+from typing import ValuesView
 from core.forms import VehiculoForm
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Vehiculo
 
 def index(request):
@@ -32,3 +33,27 @@ def nuevoVehiculo(request):
         else:
             datos['mensaje'] = 'Error'
     return render(request, 'core/formVehiculo.html',datos)
+
+
+def modificarVehiculo(request,id):
+
+    vehiculo = Vehiculo.objects.get(patente=id)
+
+    datos={
+        'form' : VehiculoForm(instance=vehiculo)
+    }
+
+    if request.method == 'POST':
+        formulario = VehiculoForm(data=request.POST,instance=vehiculo)
+        
+        if formulario.is_valid:
+            formulario.save()
+            datos['mensaje']="Datos modificados exitosamente"
+
+    return render(request,'core/formModVehiculo.html',datos)
+
+def eliminarVehiculo(request,id):
+    vehiculo = Vehiculo.objects.get(patente=id)
+    vehiculo.delete()
+
+    return redirect(to="verVehiculos")

@@ -11,7 +11,7 @@
     {% bootstrap_css %}
 </head>
 <body>
-    <h2>Nuevo Vehículo</h2>
+    <h2>Editar Vehículo</h2>
     <ul>
         <li><a href="{% url 'index' %}">Inicio</a></li>
         <li><a href="{% url 'contacto' %}">Contacto</a></li>
@@ -23,7 +23,7 @@
 
             {{ form | crispy }}
 
-            <button type="submit">Agregar</button>
+            <button type="submit">Modificar</button>
 
             
     </form>

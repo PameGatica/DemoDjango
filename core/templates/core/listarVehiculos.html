@@ -1,3 +1,4 @@
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    {% bootstrap_css %}
 </head>
 <body>
     <h2>Vehiculos</h2>
@@ -16,12 +18,13 @@
 
 
     <a href="{% url 'nuevoVehiculo' %}">Agregar Otro</a>
-    <table>
+    <table class="table table-hover">
         <tr>
             <td>Patente</td>
             <td>Marca</td>
             <td>Modelo</td>
             <td>Categoría</td>
+            <td>Acciones</td>
         </tr>
         {% for vehiculo in vehiculos %}
         <tr>
@@ -29,6 +32,11 @@
             <td>{{ vehiculo.marca }}</td>
             <td>{{ vehiculo.modelo }}</td>
             <td>{{ vehiculo.categoria }}</td>
+            <td>
+                <a href="{% url 'modificarVehiculo' vehiculo.patente  %}">M</a>
+                <a href="{% url 'eliminarVehiculo' vehiculo.patente  %}">E</a>
+            
+            </td>
         </tr>
         {% endfor %}
     </table>
