@@ -1,3 +1,4 @@
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Proyecto Django</title>
+    {% bootstrap_css %}
 </head>
 <body>
     <h1>Contacto</h1>
+    <ul>
+        <li><a href="{% url 'index' %}">Inicio</a></li>
+        <li><a href="{% url 'listarVehiculos' %}">Vehiculos</a></li>
+        <li><a href="#">Categorías</a></li>
+        <li><a href="{% url 'contacto' %}">Contacto</a></li>
+    </ul>
 </body>
 </html>
