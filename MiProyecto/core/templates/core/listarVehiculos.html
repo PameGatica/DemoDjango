@@ -1,0 +1,45 @@
+{% load static %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% bootstrap_css %}
+</head>
+
+<body>
+    <h1>Vehículos</h1>
+    <ul>
+        <li><a href="{% url 'index' %}">Inicio</a></li>
+        <li><a href="{% url 'listarVehiculos' %}">Vehiculos</a></li>
+        <li><a href="">Categorías</a></li>
+        <li><a href="{% url 'contacto'%}">Contacto</a></li>
+    </ul>
+
+    <hr>
+    <a href="{% url 'agregarVehiculo' %}" 
+    class="btn btn-primary btn-lg">+</a>
+
+    <table class="table table-hover">
+        <tr>
+            <td>Patente</td>
+            <td>Marca</td>
+            <td>Modelo</td>
+            <td>Categoría</td>
+        </tr>
+        {% for v in vehiculos %}
+        <tr>
+            <td>{{ v.patente }}</td>
+            <td>{{ v.marca }}</td>
+            <td>{{ v.modelo }}</td>
+            <td>{{ v.categoria }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>

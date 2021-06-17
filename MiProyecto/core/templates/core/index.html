@@ -12,7 +12,12 @@
 </head>
 <body>
     <h1>Hola Mundo</h1>
-    <img src="{% static 'core/img/django.png'%}" alt="">
+    <ul>
+        <li><a href="{% url 'index' %}">Inicio</a></li>
+        <li><a href="{% url 'listarVehiculos' %}">Vehiculos</a></li>
+        <li><a href="">Categorías</a></li>
+        <li><a href="{% url 'contacto'%}">Contacto</a></li>
+    </ul>
 
     {% bootstrap_javascript jquery='full' %}
 </body>
