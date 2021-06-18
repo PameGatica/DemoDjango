@@ -25,6 +25,7 @@
             <td>Marca</td>
             <td>Modelo</td>
             <td>Categoría</td>
+            <td>Acciones</td>
         </tr>
         {% for v in vehiculos %}
         <tr>
@@ -32,6 +33,10 @@
             <td>{{ v.marca }}</td>
             <td>{{ v.modelo }}</td>
             <td>{{ v.categoria }}</td>
+            <td>
+                <a href="{% url 'editarVehiculo' v.patente %}">Editar</a>
+                <a href="{% url 'eliminarVehiculo' v.patente %}">Borrar</a>
+            </td>
         </tr>
         {% endfor %}
     </table>
