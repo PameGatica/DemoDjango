@@ -55,6 +55,7 @@
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <h1 class="mt-5">Vehiculos</h1>
+            <h2>Editar</h2>
 
             <form method="post" action="" id="formulario">
                 {% csrf_token %}
@@ -64,14 +65,13 @@
                 <button type="submit" class="btn btn-primary">Guardar</button>
                 <a href="{% url 'vehiculos' %}" class="btn btn-secondary" role="button" aria-pressed="true">Cancelar</a>
             </form>
+            {% if mensaje %}
             <div class="alert alert-success" role="alert">
                 {{mensaje}}
             </div>
-
+            {% endif %}
         </div>
     </main>
-
-
     {% bootstrap_javascript jquery='full' %}
     </body>
 
