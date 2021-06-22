@@ -55,7 +55,7 @@
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <h1 class="mt-5">Vehiculos</h1>
-            <a href="{% url 'nuevo-vehiculo'%}" class="btn btn-primary active" role="button" aria-pressed="true">+</a>
+            <a href="{% url 'nuevo-vehiculo'%}"  role="button" aria-pressed="true"><img src="https://img.icons8.com/color/48/000000/plus--v3.png"/></a>
             <br><br>
             <table class="table table-hover">
                 <thead>
@@ -75,8 +75,8 @@
                         <td>{{ vehiculo.modelo}}</td>
                         <td>{{ vehiculo.categoria}}</td>
                         <td>
-                            <a href="{% url 'editarVehiculo' vehiculo.patente %}"><i class="bi bi-pencil-fill"></i></a>
-                            <a href="{% url 'eliminarVehiculo' vehiculo.patente %}"><i class="bi bi-trash-fill"></i></a>
+                            <a href="{% url 'editarVehiculo' vehiculo.patente %}"><img src="https://img.icons8.com/color/24/000000/edit--v3.png"/></a>
+                            <a href="{% url 'eliminarVehiculo' vehiculo.patente %}"><img src="https://img.icons8.com/color/24/000000/cancel--v3.png"/></a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -89,6 +89,7 @@
 
 
     {% bootstrap_javascript jquery='full' %}
+    <script type="text/javascript" src="//cdn.rawgit.com/icons8/bower-webicon/v0.10.7/jquery-webicon.min.js"></script>
     </body>
 
 </html>
