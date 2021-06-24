@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from .models import Categoria
 from .models import Vehiculo
 from .forms import VehiculoForm
+from .functions import validaVehiculo
 
 def index(request):
     return render(request,'core/index.html')
@@ -31,11 +32,17 @@ def form_vehiculo(request):
     }
 
     if request.method == 'POST':
+
         form = VehiculoForm(request.POST)
+        patente = request.POST.get("patente")
+
         if form.is_valid:
-            form.save()
-            datos['mensaje'] = "Vehículo guardado exitosamente"
-    
+            if not validaVehiculo(patente):
+                form.save()
+                datos['mensaje'] = "Vehículo guardado exitosamente"
+            else:
+                 datos['mensaje'] = "Ya existe un registro asociado a la patente " + patente
+
     return render(request,'core/nuevoVehiculo.html',datos)
 
 def editarVehiculo(request,patente):
