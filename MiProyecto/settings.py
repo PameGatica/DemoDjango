@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     #LIBRERIAS DE TERCEROS
     'bootstrap4',
     'crispy_forms',
+    'rest_framework',  #pip install djangorestframework
     #LIBRERIAS DJANGO
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #MI APP
     'core',
+    'rest',  #django-admin startapp rest
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
