@@ -1,3 +1,6 @@
+from typing import Pattern
+
+from rest_framework import response
 from rest.serializers import VehiculoSerializer
 from django.shortcuts import render
 from rest_framework import status
@@ -25,3 +28,21 @@ def lista_vehiculos(request):
         else:
             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET','PUT','DELETE'])
+def detalle_vehiculo(request,id):
+    try:
+        vehiculo = Vehiculo.objects.get(patente=id)
+    except Vehiculo.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method =='GET':
+        serializer = VehiculoSerializer(vehiculo)
+        return Response(serializer.data)
+    if request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = VehiculoSerializer(vehiculo,data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+    if request.method == 'DELETE':
+        vehiculo.delete()
+        return Response(status.HTTP_204_NO_CONTENT)
