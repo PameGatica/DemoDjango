@@ -1,0 +1,95 @@
+{% load static %}
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+< <body class="d-flex flex-column h-100">
+
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">Menu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'index' %}">Inicio <span class="sr-only">(current)</span></a>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Mantenedores</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="{% url 'categorias' %}">Categorías</a>
+                            <a class="dropdown-item" href="{% url 'vehiculos' %}">Vehículos</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+
+                    <a href="../admin/" class="btn btn-secondary btn-lg active" role="button"
+                        aria-pressed="true">Admin</a>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <h1 class="mt-5">Vehiculos</h1>
+            <a href="{% url 'nuevo-vehiculo'%}"  role="button" aria-pressed="true"><img src="https://img.icons8.com/color/48/000000/plus--v3.png"/></a>
+            <br><br>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Patente</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Categoría</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for vehiculo in vehiculos %}
+                    <tr>
+                        <th scope="row">{{ vehiculo.patente}}</th>
+                        <td>{{ vehiculo.marca}}</td>
+                        <td>{{ vehiculo.modelo}}</td>
+                        <td>{{ vehiculo.categoria}}</td>
+                        <td>
+                            <a href="{% url 'editarVehiculo' vehiculo.patente %}"><img src="https://img.icons8.com/color/24/000000/edit--v3.png"/></a>
+                            <a href="{% url 'eliminarVehiculo' vehiculo.patente %}"><img src="https://img.icons8.com/color/24/000000/cancel--v3.png"/></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+        </div>
+    </main>
+
+
+    {% bootstrap_javascript jquery='full' %}
+    <script type="text/javascript" src="//cdn.rawgit.com/icons8/bower-webicon/v0.10.7/jquery-webicon.min.js"></script>
+    </body>
+
+</html>

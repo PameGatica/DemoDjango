@@ -1,0 +1,78 @@
+{% load static %}
+{% load bootstrap4 %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% bootstrap_css %}
+</head>
+< <body class="d-flex flex-column h-100">
+
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">Menu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'index' %}">Inicio <span class="sr-only">(current)</span></a>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Mantenedores</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="{% url 'categorias' %}">Categorías</a>
+                            <a class="dropdown-item" href="{% url 'vehiculos' %}">Vehículos</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+
+                    <a href="../admin/" class="btn btn-secondary btn-lg active" role="button"
+                        aria-pressed="true">Admin</a>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <h1 class="mt-5">Vehiculos</h1>
+            <h2>Editar</h2>
+
+            <form method="post" action="" id="formulario">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form|crispy }}
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a href="{% url 'vehiculos' %}" class="btn btn-secondary" role="button" aria-pressed="true">Cancelar</a>
+            </form>
+            {% if mensaje %}
+            <div class="alert alert-success" role="alert">
+                {{mensaje}}
+            </div>
+            {% endif %}
+        </div>
+    </main>
+    {% bootstrap_javascript jquery='full' %}
+    </body>
+
+</html>
