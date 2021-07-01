@@ -28,3 +28,31 @@ def lista_vehiculos(request):
         else:
             return Response(serializer.data,status=status.HTTP_400_BAD_REQUEST)
 
+
+#Si request es por GET: accedimos a una URL para ver el detalle de un vehículo
+#Si request es por PUT: modificamos los datos del vehículo cuya patente se envío por la URL
+#Si request es por DELETE: eliminamos el vehículo cuya patente se envío por la URL
+@api_view(['GET','PUT','DELETE'])
+def detalle_vehiculo(request, id):
+    try:
+        vehiculo = Vehiculo.objects.get(patente=id)
+    
+    except Vehiculo.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = VehiculoSerializer(vehiculo)
+        return Response(serializer.data)
+    
+    if request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = VehiculoSerializer(vehiculo,data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+    if request.method == 'DELETE':
+        vehiculo.delete()
+        return Response(status.HTTP_204_NO_CONTENT)
