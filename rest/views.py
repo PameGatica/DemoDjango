@@ -1,18 +1,18 @@
-from typing import Pattern
-
-from rest_framework import response
 from rest.serializers import VehiculoSerializer
-from django.shortcuts import render
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
 from .serializers import VehiculoSerializer
 from core.models import Vehiculo
 
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 @csrf_exempt
 @api_view(['GET','POST'])
+@permission_classes((IsAuthenticated,))
 def lista_vehiculos(request):
 
     if request.method == 'GET':
@@ -29,6 +29,7 @@ def lista_vehiculos(request):
             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET','PUT','DELETE'])
+@permission_classes((IsAuthenticated,))
 def detalle_vehiculo(request,id):
     try:
         vehiculo = Vehiculo.objects.get(patente=id)
