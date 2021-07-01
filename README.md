@@ -1,4 +1,5 @@
 # DemoDjango
+<<<<<<< HEAD
 Proyecto Demo Django Framework de apoyo a la Experiencia N°3 de la Asignatura Programación Web 
 
 ## Parte 1:  Configuración del entorno
@@ -166,3 +167,6 @@ c:\ProyectosDjango\Proyecto>py manage.py migrate
 ```console
 c:\ProyectosDjango\Proyecto>py manage.py createsuperuser 
 ```
+=======
+Proyecto Ayuda a un Peludo en Django
+>>>>>>> main
