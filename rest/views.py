@@ -1,3 +1,4 @@
+from re import I
 from .serializers import VehiculoSerializer
 from django.shortcuts import render
 from core.models import Vehiculo
@@ -23,3 +24,29 @@ def procesar_vehiculos(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+#GET para listar
+#POST para agregar nuevo
+#PUT para modificar
+
+@api_view(['GET','PUT','DELETE'])
+def detalle_vehiculo(request, id):
+    try:
+        vehiculo = Vehiculo.objects.get(patente=id)
+    except Vehiculo.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = VehiculoSerializer(vehiculo)
+        return Response(serializer.data)
+    
+    if request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = VehiculoSerializer(vehiculo,data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+    
+    if request.method == 'DELETE':
+        vehiculo.delete()
+        return Response(status.HTTP_204_NO_CONTENT)
