@@ -4,13 +4,15 @@ from rest_framework import status
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 from core.models import Vehiculo
 
 
 @csrf_exempt
 @api_view(['GET','POST'])
-
+@permission_classes((IsAuthenticated,))
 #Si request es por GET: accedimos a una URL para listar los elementos
 #Si el request es por POST: enviando elementos a la vista (Por ejemplo desde un formulario)
 def lista_vehiculos(request):
@@ -33,6 +35,7 @@ def lista_vehiculos(request):
 #Si request es por PUT: modificamos los datos del vehículo cuya patente se envío por la URL
 #Si request es por DELETE: eliminamos el vehículo cuya patente se envío por la URL
 @api_view(['GET','PUT','DELETE'])
+@permission_classes((IsAuthenticated,))
 def detalle_vehiculo(request, id):
     try:
         vehiculo = Vehiculo.objects.get(patente=id)
